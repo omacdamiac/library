@@ -1,0 +1,17 @@
+:host {
+  display: block;
+
+  label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+  }
+
+  input {
+    padding: 0.4rem;
+  }
+
+  input,
+  label {
+    margin-top: 0.4rem;
+  }
+}

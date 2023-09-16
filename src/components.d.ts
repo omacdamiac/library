@@ -6,6 +6,15 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface AtButton {
+        "color": string;
+        "text": string;
+    }
+    interface AtInput {
+        "name": string;
+        "required": string;
+        "text": string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +31,18 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAtButtonElement extends Components.AtButton, HTMLStencilElement {
+    }
+    var HTMLAtButtonElement: {
+        prototype: HTMLAtButtonElement;
+        new (): HTMLAtButtonElement;
+    };
+    interface HTMLAtInputElement extends Components.AtInput, HTMLStencilElement {
+    }
+    var HTMLAtInputElement: {
+        prototype: HTMLAtInputElement;
+        new (): HTMLAtInputElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +50,21 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "at-button": HTMLAtButtonElement;
+        "at-input": HTMLAtInputElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface AtButton {
+        "color"?: string;
+        "text"?: string;
+    }
+    interface AtInput {
+        "name"?: string;
+        "required"?: string;
+        "text"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +80,8 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "at-button": AtButton;
+        "at-input": AtInput;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +89,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "at-button": LocalJSX.AtButton & JSXBase.HTMLAttributes<HTMLAtButtonElement>;
+            "at-input": LocalJSX.AtInput & JSXBase.HTMLAttributes<HTMLAtInputElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
